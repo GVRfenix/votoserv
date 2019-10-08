@@ -1,0 +1,51 @@
+.jaction{
+    margin: 5px;
+    width: auto;
+    background-color: #f8f8f8;
+    font-weight: bold;
+    font-size: 1em;
+    webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    color: #7C1B1B;
+    transition: all 0.3s;
+}
+
+.jaction:hover{
+    margin: 5px;
+    width: auto;
+    background-color: #7C1B1B;
+    color: #f8f8f8;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+.jselect {
+    padding:5px;
+    margin: 5px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+.no-mostrar{
+    display: none;
+}
+
+.ui-widget-content {
+        background: none !important;
+        background-color: #DFDFDF !important;
+    }

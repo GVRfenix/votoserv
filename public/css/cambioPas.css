@@ -1,0 +1,51 @@
+#passwordUsua input{
+        padding: 5px 0 5px 10px; 
+        width: 350px;
+    }
+#passwordUsua label{
+        display: block; 
+        float: left; 
+        padding: 5px 10px 0 0; 
+        text-align: right; 
+        width: 170px;
+}
+.lineaJFI{
+        margin: 15px 10px 5px 5px;
+}
+#form-proceso{
+    border: 2px solid #415e9b;
+    margin: 0 auto;
+    padding: 0;
+    width: 650px;
+}
+#titulo-formPoc {
+    background-color: #415e9b;
+    border: 2px solid #415e9b;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+    width: 650px;
+}
+
+#resetbtn, #submitbtn{
+    background-color: #415E9B;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 10px;
+    transition: all 1s ease 0s;
+    width: 120px;
+}
+
+#resetbtn:hover, #submitbtn:hover{
+    margin: 0px 0px 10px;
+    width: 120px;
+    background-color: #8d9ec3;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 1s;
+}

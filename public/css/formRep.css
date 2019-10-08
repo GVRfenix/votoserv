@@ -1,0 +1,83 @@
+#titulo_registro {
+    background-color: #1a2b35;
+    border: 2px solid #1a2b35;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+    width: 400px;
+    font-family: "Palatino Linotype","Book Antiqua",Palatino,serif;
+}
+#form-reg{
+    border: 2px solid #1a2b35;
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 400px;
+    font-size: 14px;
+}
+#form-reg #subir{
+    background-color: #1a2b35;/*/#415E9B;*/
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 0px 270px;
+    transition: all 1s ease 0s;
+    width: 120px;
+}
+
+#form-reg #subir:hover{
+    margin: 0px 0px 0px 270px;
+    width: 120px;
+    background-color: #666;/*/#8d9ec3;*/
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+legend{
+    font-size: 18px !important;
+}
+
+#form-reg label{
+    float: left;
+    width: 110px;
+    text-align: right;
+    margin: 0 10px;
+    display: block;
+}
+
+#form-reg input{
+    width: 240px;
+    display: block;
+    margin: 0px 5px;
+}
+
+.linea-form{
+    margin: 10px 0;
+}
+
+
+#form-reg select{
+    width: 245px;
+    display: block;
+}
+
+#idresp, #idUni, #idveh, #idcho {
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+#vehi, #chof, #combus{
+	float: left !important;
+    margin: 5px !important;
+    width: 15px !important;
+}
+
+#vehiculo, #chofer, #litros {
+	width: 200px !important;
+}
+

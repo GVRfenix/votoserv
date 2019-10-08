@@ -1,0 +1,119 @@
+#titulo_registro {
+    background-color: #1a2b35;
+    border: 2px solid #1a2b35;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+    width: 600px;
+    font-family: "Palatino Linotype","Book Antiqua",Palatino,serif;
+}
+#form-reg{
+    border: 2px solid #1a2b35;
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 600px;
+    font-size: 14px;
+}
+#form-reg #Guardar{
+    background-color: #1a2b35;/*/#415E9B;*/
+    color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 10px 430px;
+    transition: all 1s ease 0s;
+    width: 120px;
+}
+
+#form-reg #Guardar:hover{
+    margin: 0px 0px 10px 430px;
+    width: 120px;
+    background-color: #FED001;/*/#8d9ec3;*/
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+legend{
+    font-size: 18px !important;
+}
+
+#form-reg label{
+    float: left;
+    width: 170px;
+    text-align: right;
+    margin: 0 10px;
+    display: block;
+}
+
+#form-reg input{
+    width: 340px;
+    display: block;
+    margin: 0px 5px;
+}
+
+.linea-form{
+    margin: 10px 0;
+}
+
+#form-reg textArea{
+        display: block;
+        height: 40px;
+        margin: 0 5px 0 5px;
+        width: 350px;
+    }
+    
+#form-reg select{
+    width: 140px;
+    display: block;
+}
+#adqdir{
+    width: 14px !important;
+}
+#idftte, #iddep, #idprov{
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden;
+    width: 0 !important;
+}
+#id_unidad, #idusu{
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden;
+    width: 0 !important;
+}
+
+
+/*
+    adcionar para colores datepicker
+    */
+/*    .ui-widget-content {
+        background: none repeat scroll 0 0 #f0f0f0 !important;
+    }
+    .ui-dialog .ui-dialog-content {
+        background-color: #c5c5c5 !important;
+    }
+    .ui-widget-header {
+        background-color: #017B31#415e9b !important;
+    }
+    .ui-widget-header {
+        border: 0 none !important;
+        color: #ffffff;
+        font-weight: bold;
+    }
+    para los dias
+    .ui-datepicker-calendar thead{
+        background-color: #30bd69;
+    }
+    .ui-datepicker th {
+        border: 1px solid #fff;
+        color: #fff;
+    }*/
+    /*
+    Fin adcionar para colores datepicker
+    */

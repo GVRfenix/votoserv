@@ -1,0 +1,21 @@
+#jfloat{
+    z-index: 200;
+}
+
+
+#jfloat label {
+    color: #7c1b1b;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 5px;
+}
+#jfloat.fixed {
+/*    padding: 5px;*/
+    position: fixed;
+    top: 50px;
+	left: 120px;
+}
+#jfloat {
+    background: none repeat scroll 0 0 #fff;
+    top: 0;
+}

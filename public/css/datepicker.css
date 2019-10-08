@@ -1,0 +1,41 @@
+/*
+adcionar para colores datepicker
+*/
+.ui-widget-content {
+    background: none repeat scroll 0 0 #f0f0f0 !important;
+    border: 1px solid #017B31 !important;
+}
+.ui-dialog .ui-dialog-content {
+    background-color: #c5c5c5 !important;
+}
+.ui-widget-header {
+    border: 0 none !important;
+    background-color: #017B31 !important;
+    border: 1px solid #017B31 !important;
+}
+.ui-widget-header {
+    background: #153e66 !important;
+    border: 0 none !important;
+    color: #ffffff;
+    font-weight: bold;
+}
+/*para los dias*/
+.ui-datepicker-calendar thead{
+    background-color: #42719d;
+}
+.ui-datepicker th {
+    border: 1px solid #fff !important;
+    color: #fff;
+}
+.ui-widget-content {
+    background: #eeeeee !important;
+}
+.ui-datepicker table tbody{
+    background-color: #153e66;
+}
+.ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all{
+    background-color: #153e66 !important;
+}
+/*
+Fin adcionar para colores datepicker
+*/
