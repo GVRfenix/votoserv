@@ -16,12 +16,12 @@ class CreateRecintoTable extends Migration
         Schema::create('recinto', function (Blueprint $table) {
             $table->increments('recinto_id');
             $table->string('recinto_provincia', 30);
-            $table->string('recinto_municipio', 30);
-            $table->string('recinto_asiento_elec', 30);
-            $table->string('recinto_nombre', 40);
+            $table->string('recinto_municipio', 60);
+            $table->string('recinto_asiento_elec', 60);
+            $table->string('recinto_nombre', 60);
             $table->string('recinto_circ', 5);
-            $table->integer('recinto_nmesas');
-            $table->integer('recinto_habilitados');
+            //$table->integer('recinto_nmesas');
+           // $table->integer('recinto_habilitados');
             $table->string('recinto_gestion', 4);
             $table->timestamps();
         });

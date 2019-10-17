@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateRepreTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('repre', function (Blueprint $table) {
+            $table->increments('repre_id');
+			$table->string('repre_nombre', 150);
+            $table->string('repre_ci', 15);
+            $table->string('repre__tipo', 2);
+            $table->string('repre_cel', 7);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('repre');
+    }
+}

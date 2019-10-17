@@ -20,8 +20,9 @@ class CreateTotalTable extends Migration
             //$table->integer('total_alcalde');
             //$table->integer('total_gobernador');
             $table->timestamp('total_fec_reg');
-			$table->integer('recinto');
-			$table->integer('nmesa');
+			$table->integer('mesas');
+			$table->string ('obs_suma_voto');
+			$table->string ('observaciones');
 			$table->integer('presi_cc');
 			$table->integer('presi_ucs');
 			$table->integer('presi_pdc');

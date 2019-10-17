@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Modelos\Total;
 use App\Modelos\recinto;
+use App\Modelos\Mesas;
 use App\Modelos\totalPresi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -83,15 +84,24 @@ class RegistroController extends Controller
 			'unino_nul.required' => 'El campo obligatorio',
 			'unino_blan.required' => 'El campo obligatorio'
 		]);
-		$data = recinto::select('recinto_habilitados', 'recinto_nmesas')
-							->where('recinto_id', '=', "{$datos['idrecint']}")->get();
-		$habilitados=$data[0]->recinto_habilitados;
-		$sumatoria=$datos['presi_cc'] + $datos['presi_ucs'] + $datos['presi_pdc'] + $datos['presi_fpv'] + $datos['presi_mas'] + $datos['presi_mnr'] + $datos['presi_mts'] + $datos['presi_bdn'] + $datos['presi_pan'];
+		$data = Mesas::select('mesa_habili')
+							->where('mesa_id', '=', "{$datos['nmesa']}")->get();
+		$habilitados=$data[0]->mesa_habili;
+		$sumatoriap=$datos['presi_cc'] + $datos['presi_ucs'] + $datos['presi_pdc'] + $datos['presi_fpv'] + $datos['presi_mas'] + $datos['presi_mnr'] + $datos['presi_mts'] + $datos['presi_bdn'] + $datos['presi_pan'] + $datos['presi_nu'] + $datos['presi_blan'];
+		$sumatoriau=$datos['unino_cc'] + $datos['unino_ucs'] + $datos['unino_pdc'] + $datos['unino_fpv'] + $datos['unino_mas'] + $datos['unino_mnr'] + $datos['unino_mts'] + $datos['unino_bdn'] + $datos['unino_pan'] + $datos['unino_nul'] + $datos['unino_blan'];
 		//dd($datos);
-		//if($habilitados>=$sumatoria){
+		$obs_suma_voto=" ";
+		if($habilitados<$sumatoriap or $habilitados < $sumatoriau){
+			$obs_suma_voto= "excede total habilitados";
+		} 
+		$observ =' ';
+		if ($sumatoriap == 0 and $sumatoriau == 0) {
+			$observ = 'mesa anulada';
+		}
 			$total = Total::create([
-				'recinto' 	=> $datos['idrecint'],
-				'nmesa'  	=> $datos['nmesa'],
+				'mesas' 	=> $datos['nmesa'],
+				'obs_suma_voto'=> $obs_suma_voto,
+				'observaciones'=> $observ,
 				'presi_cc'  => $datos['presi_cc'],
 				'presi_ucs' => $datos['presi_ucs'],
 				'presi_pdc' => $datos['presi_pdc'],
@@ -136,12 +146,27 @@ class RegistroController extends Controller
 							->where('recinto_municipio', '=', "{$dato['dat']}")
 							->distinct('recinto_asiento_elec')->get();
 		} elseif(strcmp($dato['tipo'], 'asien')===0){
-			$data = recinto::select('recinto_nombre')
+			$data = recinto::select('recinto_nombre', 'recinto_id')
 							->where('recinto_asiento_elec', '=', "{$dato['dat']}")
-							->distinct('recinto_nombre')->get();
+							->distinct('recinto_nombre')
+							->orderBy('recinto_nombre')->get();
 		} elseif(strcmp($dato['tipo'], 'recinto')===0){
-			$data = recinto::select('recinto_id')
-							->where('recinto_nombre', '=', "{$dato['dat']}")->get();
+			/*$dat = recinto::select('recinto_id')
+							->where('recinto_nombre', '=', "{$dato['dat']}")
+							->distinct('recinto_id')->get();
+			//echo $data[0]->recinto_id;
+			/*$data = mesa::select('mesa_numero')
+							->join('recinto','recinto', '=','recinto.recinto_id' )
+							->where('recinto.recinto_nombre', '=',"{$dato['dat']}" )
+							//->andWhere ('mesa_numero', '=', $dato['nm'])
+							->distinct('mesa_numero')->get();*/
+			$data = Mesas::select('mesa_numero', 'mesa_id')
+							->where('recinto', '=',$dato['dat'] )
+							->distinct('mesa_numero')
+							->orderBy('mesa_numero')->get();
+			//dd($data);
+		//} elseif () {
+			
 		}
 		//dd($data);
 		return response()->json($data, 200);
@@ -169,7 +194,7 @@ class RegistroController extends Controller
             array( 't_col' => 'LOCAL.',  'n_col' => 'recinto_asiento_elec', 	'tipo_col'=>'texto', 'n_getter'=>'recinto_asiento_elec', 'width' =>'10px', 'visible' =>true, 'ordenar'=>false),
             array( 't_col' => 'RECINTO',    'n_col' => 'recinto_nombre',	'tipo_col'=>'texto', 'n_getter'=>'recinto_nombre','width' =>'10px', 'visible' =>true, 'ordenar'=>false),
             array( 't_col' => 'CIRC.','n_col' => 'recinto_circ',   	'tipo_col'=>'texto', 'n_getter'=>'recinto_circ',   'width' =>'10px', 'visible' =>true, 'ordenar'=>false),
-            array( 't_col' => 'Nº MESA',	'n_col' => 'nmesa',    	'tipo_col'=>'texto', 'n_getter'=>'nmesa',    'width' =>'10px', 'visible' =>true, 'ordenar'=>true),
+            array( 't_col' => 'Nยบ MESA',	'n_col' => 'nmesa',    	'tipo_col'=>'texto', 'n_getter'=>'nmesa',    'width' =>'10px', 'visible' =>true, 'ordenar'=>true),
 			array( 't_col' => 'CC',    		'n_col' => 'presi_cc',      	'tipo_col'=>'texto', 'n_getter'=>'presi_cc',      'width' =>'10px', 'visible' =>true, 'ordenar'=>true),
 			array( 't_col' => 'UCS',   		'n_col' => 'presi_ucs', 	'tipo_col'=>'texto', 'n_getter'=>'presi_ucs', 'width' =>'10px', 'visible' =>true, 'ordenar'=>true),
 			array( 't_col' => 'PDC',   		'n_col' => 'presi_pdc',      	'tipo_col'=>'texto', 'n_getter'=>'presi_pdc', 'width' =>'10px', 'visible' =>true, 'ordenar'=>true),
@@ -192,13 +217,13 @@ class RegistroController extends Controller
 			$total = Total::orderBy('total_id','DESC')->paginate(10);
 			$recinto = recinto::orderBy('recinto_id','DESC')->paginate(10);
 		//}
-		$resul = totalPresi::all();
-		
+		$Presidente = totalPresi::all();
+		///dd($Presidente);
 		//$resul = DB::select('SELECT * FROM total_presi ');
 		
 		//dd($resul);
 		//dd($total[0]->recin->recinto_provincia);
 		//dd(compact('total'));
-		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total'));
+		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total', 'Presidente'));
 	}
 }

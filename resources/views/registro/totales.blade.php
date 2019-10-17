@@ -10,6 +10,42 @@
 @section('contenido') 
 		<br>
         <br>
+		<div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
+			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
+				<thead>
+					<tr>
+						<th>CC</th>
+						<th>UCS</th>
+						<th>PDC</th>
+						<th>FPV</th>
+						<th>MAS-IPSP</th>
+						<th>MNR</th>
+						<th>MTS</th>
+						<th>BDN</th>
+						<th>PAN</th>
+						<th>NULO</th>
+						<th>BLANCO</th>
+					</tr>
+				</thead>
+				<TBODY>
+					<tr>
+						<td>
+							<?php echo($Presidente[0]->trcc); ?>
+						</td>
+						<td><?php echo $Presidente[0]->trucs; ?></td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+						<td>{Presidente->trcc}</td>
+					</tr>
+				</TBODY>
+			</table>
+		</div>
         <br>
 		<hr>
         <div id='titulo-pantalla'><?= e($titulo); ?></div>

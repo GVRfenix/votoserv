@@ -101,7 +101,7 @@
 				success: function( data ) {
 					data.forEach(function (element){
 						var opcion = document.createElement('option');
-						opcion.value = element.recinto_nombre;
+						opcion.value = element.recinto_id;
 						opcion.text = element.recinto_nombre;
 						prov.add(opcion);
 					});
@@ -111,7 +111,19 @@
 		}
 	}
 	function recintoid(valor, response){
-		if(valor!=0){
+		var prov = document.getElementById("nmesa");
+		document.getElementById("nmesa").options.length=0;
+		var opcion = document.createElement('option');
+		opcion.value = 0;
+		opcion.text = '0';
+		prov.add(opcion);
+		if(valor==0)
+		{
+			// desactivamos el segundo select
+			
+			document.getElementById("nmesa").disabled=true;
+		}else{
+		//if(valor!=0){
 			
 			$.ajax({
 				type: "POST",
@@ -124,14 +136,41 @@
 				},
 				success: function( data ) {
 					data.forEach(function (element){
-						console.log (element.recinto_id);
-						$('#idrecint').val(element.recinto_id);
+						var opcion = document.createElement('option');
+						opcion.value = element.mesa_id;
+						opcion.text = element.mesa_numero;
+						prov.add(opcion);
+						//console.log (element.recinto_id);
+						//$('#idrecint').val(element.recinto_id);
 					});
 				}
 			});
-			document.getElementById("recinto").disabled=false;
+			document.getElementById("nmesa").disabled=false;
 		}
 	}
+	
+	/*function mesaid(valor, response){
+		if(valor!=0){
+			
+			/*$.ajax({
+				type: "POST",
+				url : '/datos',
+				dataType: "json",
+				data: {
+					_token: $('#token').val(),
+					dat: valor,
+					tipo: 'nmesa'
+				},
+				success: function( data ) {
+					data.forEach(function (element){*/
+						console.log (valor);
+						$('#idrecint').val(valor);
+					/*});
+				}
+			});*/
+			//document.getElementById("nmesa").disabled=false;
+		}
+	}*/
 	
 </script>
 @section('contenido')
@@ -174,10 +213,11 @@
 					</DIV>
 					<div style="display: inline; width: 20%;">
 						<label>Nº DE MESA</label>
-						<input type = 'text' id='nmesa' name='nmesa' placeholder='0' style="width: 20px;" value="{{old('nmesa') }}">
-						@if ($errors->has('nmesa'))
-							<div class='error'>{{$errors->first('nmesa')}}</div>
-						@endif
+						<select id='nmesa' name='nmesa' style="width: 40px;" onchange = 'mesaid(this.value);' disabled >
+							<option value='0'>0</option>";
+						</select>
+						<!--input type = 'text' id='nmesa' name='nmesa' placeholder='0' style="width: 20px;" value="{{old('nmesa') }}"--->
+						
 					</DIV>
 					
 				</div>
