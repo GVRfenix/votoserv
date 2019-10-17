@@ -149,7 +149,7 @@
 		}
 	}
 	
-	/*function mesaid(valor, response){
+	function mesaid(valor, response){
 		if(valor!=0){
 			
 			/*$.ajax({
@@ -170,7 +170,7 @@
 			});*/
 			//document.getElementById("nmesa").disabled=false;
 		}
-	}*/
+	}
 	
 </script>
 @section('contenido')

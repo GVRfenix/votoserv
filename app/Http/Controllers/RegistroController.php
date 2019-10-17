@@ -5,6 +5,7 @@ use App\Modelos\Total;
 use App\Modelos\recinto;
 use App\Modelos\Mesas;
 use App\Modelos\totalPresi;
+use App\Modelos\TotalCircuns;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -160,11 +161,26 @@ class RegistroController extends Controller
 							->where('recinto.recinto_nombre', '=',"{$dato['dat']}" )
 							//->andWhere ('mesa_numero', '=', $dato['nm'])
 							->distinct('mesa_numero')->get();*/
+			
 			$data = Mesas::select('mesa_numero', 'mesa_id')
-							->where('recinto', '=',$dato['dat'] )
+							->where('recinto', '=',$dato['dat'])
 							->distinct('mesa_numero')
 							->orderBy('mesa_numero')->get();
-			//dd($data);
+			/*$resul=array();
+			$cont=0;
+			foreach($data as $dat){
+				$tot = Total::select('total_id')
+							->where('mesas', '=' , $dat->mesa_id)
+							->get();
+							
+				//dd($dat->mesa_numero);
+				if(count($tot)==0){
+					$resul[$cont][mesa_numero] = $dat->mesa_numero;
+					$resul[$cont][mesa_id] = $dat->mesa_id;
+				}
+				$cont++;
+			}
+			dd($resul);*/
 		//} elseif () {
 			
 		}
@@ -173,7 +189,7 @@ class RegistroController extends Controller
 	}
 	
 	public function lista(){
-		$titulo = 'Lista de Viajes';
+		$titulo = 'Registro de mesas';
 		$datos = false;
 		if(request()->all()){//;die;
 			$datos = request()->all();
@@ -218,12 +234,17 @@ class RegistroController extends Controller
 			$recinto = recinto::orderBy('recinto_id','DESC')->paginate(10);
 		//}
 		$Presidente = totalPresi::all();
-		///dd($Presidente);
+		$circuns = TotalCircuns::all();
+		$totalElectore= Mesas::all()->sum('mesa_habili');
+		$porcen = round(($Presidente[0]->validos/$totalElectore)*100, 2);
+		//dd($porcen);
+		//dd($totalElectore);
+		//dd($circuns);
 		//$resul = DB::select('SELECT * FROM total_presi ');
 		
 		//dd($resul);
 		//dd($total[0]->recin->recinto_provincia);
 		//dd(compact('total'));
-		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total', 'Presidente'));
+		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total', 'Presidente', 'circuns', 'porcen'));
 	}
 }

@@ -10,7 +10,14 @@
 @section('contenido') 
 		<br>
         <br>
-		<div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
+		
+        <br>
+		<hr>
+		
+		
+		 <div id='titulo-pantalla'>TOTALES PRESIDENTE</div>
+		 <br>
+		<div style="display: inline-block; width: 800px; margin: 5px; ">
 			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
 				<thead>
 					<tr>
@@ -23,38 +30,86 @@
 						<th>MTS</th>
 						<th>BDN</th>
 						<th>PAN</th>
+						<th>VALIDOS</th>
 						<th>NULO</th>
 						<th>BLANCO</th>
 					</tr>
 				</thead>
 				<TBODY>
 					<tr>
-						<td>
-							<?php echo($Presidente[0]->trcc); ?>
-						</td>
+						<td><?php echo($Presidente[0]->trcc); ?></td>
 						<td><?php echo $Presidente[0]->trucs; ?></td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
-						<td>{Presidente->trcc}</td>
+						<td><?php echo $Presidente[0]->trpdc; ?></td>
+						<td><?php echo $Presidente[0]->trfpv; ?></td>
+						<td><?php echo $Presidente[0]->trmas; ?></td>
+						<td><?php echo $Presidente[0]->trmnr; ?></td>
+						<td><?php echo $Presidente[0]->trmts; ?></td>
+						<td><?php echo $Presidente[0]->trbdn; ?></td>
+						<td><?php echo $Presidente[0]->trpan; ?></td>
+						<td><?php echo "{$Presidente[0]->validos} - $porcen%"; ?></td>
+						<td><?php echo $Presidente[0]->trnulo; ?></td>
+						<td><?php echo $Presidente[0]->trblan; ?></td>
+						
 					</tr>
 				</TBODY>
 			</table>
 		</div>
-        <br>
-		<hr>
+		<br><br>
+		<div id='titulo-pantalla'>TOTALES UNINOMINALES</div>
+		 <br>
+		<div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
+			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
+				<thead>
+					<tr>
+						<th>CIRCUNSCRIPCION</th>
+						<th>CC</th>
+						<th>UCS</th>
+						<th>PDC</th>
+						<th>FPV</th>
+						<th>MAS-IPSP</th>
+						<th>MNR</th>
+						<th>MTS</th>
+						<th>BDN</th>
+						<th>PAN</th>
+						<th>VALIDOS</th>
+						<th>NULO</th>
+						<th>BLANCO</th>
+					</tr>
+				</thead>
+				<TBODY>
+					<?php 
+						$linea='';
+						foreach ($circuns as $cir){
+							$linea .="<tr>
+								<td>$cir->circu</td>
+								<td>$cir->trcc</td>
+								<td>$cir->trucs</td>
+								<td>$cir->trpdc</td>
+								<td>$cir->trfpv</td>
+								<td>$cir->trmas</td>
+								<td>$cir->trmnr</td>
+								<td>$cir->trmts</td>
+								<td>$cir->trbdn</td>
+								<td>$cir->trpan</td>
+								<td>$cir->validosu</td>
+								<td>$cir->trnulo</td>
+								<td>$cir->trblan</td>
+							</tr>";
+						}
+						echo $linea;
+					?>
+				</TBODY>
+			</table>
+		</div>
+		<br><br>
+		
         <div id='titulo-pantalla'><?= e($titulo); ?></div>
 		
         <div id="contenedor-proceso">
             <form method="POST">
 				{!! csrf_field() !!}
-                <div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
-                    <!--<div style="float: left; margin: 5px; width: auto;">-->
+                <!--div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
+                    <!--<div style="float: left; margin: 5px; width: auto;">->
                         <input type="hidden" name="id_usado" id="id_usado" value="" />
                         <input id="jsearch" name="busca" type="text" value="{{$buscar}}" style="float: left;">
                         <button type='submit' id='buscar' class='jaction' name="buscar" style="float: left;" value='buscar'>BUSCAR</button>
@@ -62,7 +117,7 @@
                         <div style="float: left;">
                         <button id='editar' class='jaction' name='editar' disabled style='visibility:hidden; width:0;  height: 0; float: right;' value='editar'>EDITAR</button>
                         </div>
-                </div>
+                </div-->
                 <div style="width: 100%; overflow: auto;">
                     <div style="width: 1250px;  display: inline-block;">
                         <table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
@@ -124,11 +179,11 @@
                                         $linea = "<tr $class'>";
                                         //foreach ($columnas AS $columna){ 
 											$linea .= "<td valign='top' class='no-mostrar'>{$dato->total_id}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recinto_provincia}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recinto_municipio}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recinto_asiento_elec}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recinto_nombre}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recinto_circ}</td>";
+											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_provincia}</td>";
+											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_municipio}</td>";
+											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_asiento_elec}</td>";
+											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_nombre}</td>";
+											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_circ}</td>";
 											$linea .= "<td valign='top'>{$dato->nmesa}</td>";
 											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_cc}<br>

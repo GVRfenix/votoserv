@@ -35,14 +35,14 @@
 						<div class="cartera">
 							<div id="titulo"><h2>COMPUTO<BR>2019<br>MENÚ</h2></div>
 						
-							<div class="tarjeta tfacebook">
+							<!--div class="tarjeta tfacebook">
 								<a class="fa-upload" href="/ININCIO">INICIO</a>
-							</div>
+							</div-->
 							<div class="tarjeta tgoogle">
-								<a class="fa-sun-o" href="/funcionario">REGISTROS</a>
+								<a class="fa-sun-o" href="/registro/nuevo">REGISTROS</a>
 							</div>
 							<div class="tarjeta ttwitter">
-								<a class="fa-outdent" href="/vehiculo">SEGUIMIENTO</a>
+								<a class="fa-outdent" href="/registro/resultados">SEGUIMIENTO</a>
 							</div>
 							<div class="tarjeta tlinkedin">
 								<a class="fa-lock" href="/chofer">Reportes</a>
