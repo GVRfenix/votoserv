@@ -59,6 +59,10 @@
                         <h5 class="card-title">Presidente</h5>
                     </div>
                 </div>
+				<div>
+					<b>TOTAL DE VOTANTES:</b> {{$totalElectore }}<br>
+					<b>TOTAL DE VALIDOS:</b> {{$presidente->validos}} - {{$porcen }}%
+				</div>
             </div>
             <div class="col-sm-6">
                 <div class="card" style="width: 100%;">
@@ -67,9 +71,20 @@
                         <h5 class="card-title">Uninominales</h5>
                     </div>
                 </div>
+				<div>
+					<b>TOTAL DE VOTANTES:</b> {{$totalElectore }}<br>
+					<b>TOTAL DE VALIDOS:</b> {{$circuns->validos}} - {{$porcenU }}%
+				</div>
             </div>
         </div>
+		<BR>
+		
+		<hr>
+		
+        <h2>PRESIDENTE</h2>
         <hr>
+        <hr>
+		
         <h2>Provincias</h2>
         <hr>
         <div class="row">
@@ -81,9 +96,15 @@
                         <h5 class="card-title">{{ $provincia->provincia }}</h5>
                     </div>
                 </div>
+				<div>
+				
+					<b>TOTAL DE VOTANTES:</b> {{$provincia->habili}}<br>
+					<b>TOTAL DE VALIDOS:</b> {{$provincia->validosu}} - {{round(($provincia->validosu/$provincia->habili)*100, 2) }}%
+				</div>
             </div>
             @endforeach
         </div>
+		<BR>
         <hr>
         <h2>Municipios</h2>
         <hr>
@@ -96,6 +117,35 @@
                         <h5 class="card-title">{{ $municipio->municipio }}</h5>
                     </div>
                 </div>
+				<div>
+					<b>TOTAL DE VOTANTES:</b> {{$municipio->habili }}<br>
+					<b>TOTAL DE VALIDOS:</b> {{$municipio->validosu}} - {{round(($municipio->validosu/$municipio->habili)*100, 2) }}%
+				</div>
+            </div>
+			<br><br>
+            @endforeach
+        </div>
+		<BR>
+        <hr>
+		<hr>
+		
+        <h2>UNINOMINALES</h2>
+        <hr>
+        <h2>Circunscripciones</h2>
+        <hr>
+        <div class="row">
+            @foreach($circun as $circ)
+            <div class="col-sm-6">
+                <div class="card" style="width: 100%;">
+                    <canvas id="{{ $circ->circu.'c' }}" width="100%" height="100%"></canvas>
+                    <div class="card-body">
+                        <h5 class="card-title">Circunscripcion {{ $circ->circu }}</h5>
+                    </div>
+                </div>
+				<div>
+					<b>TOTAL DE VOTANTES:</b> {{$circ->habili }}<br>
+					<b>TOTAL DE VALIDOS:</b> {{$circ->validosu}} - {{round(($circ->validosu/$circ->habili)*100, 2) }}%
+				</div>
             </div>
             @endforeach
         </div>
@@ -111,20 +161,20 @@
             type: 'bar',
             data: {
                 labels: [
-                    'C.C.',
-                    'F.P.V.',
-                    'M.T.S.',
-                    'U.C.S.',
-                    'M.A.S.',
-                    'B.D.N.',
-                    'P.D.C.',
-                    'M.N.R.',
-                    'PAN-BOL',
-                    'Nulos',
-                    'Blancos'
+                    'C.C.: '+{{$presidente->trcc}},
+                    'F.P.V.: '+{{ $presidente->trfpv }},
+                    'M.T.S: '+{{ $presidente->trmts }},
+                    'U.C.S: '+{{ $presidente->trucs }},
+                    'M.A.S.-IPSP: '+{{ $presidente->trmas }},
+                    'B.D.N: '+{{ $presidente->trbdn }},
+                    'P.D.C.: '+{{ $presidente->trpdc }},
+                    'M.N.R.: '+{{ $presidente->trmnr }},
+                    'PAN-BOL: '+{{ $presidente->trpan }},
+                    'Nulos: '+{{ $presidente->trnulo }},
+                    'Blancos: '+{{ $presidente->trblan }}
                 ],
                 datasets: [{
-                    label: 'Nro. de votos',
+                    label: 'VOTOS',
                     data: [
                         {{ $presidente->trcc }},
                         {{ $presidente->trfpv }},
@@ -211,19 +261,19 @@
                     'Blancos'
                 ],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'VOTOS',
                     data: [
-                        {{ $circuns->trucc }},
-                        {{ $circuns->trufpv }},
-                        {{ $circuns->truucs }},
-                        {{ $circuns->trumts }},
-                        {{ $circuns->trumas }},
-                        {{ $circuns->trubdn }},
-                        {{ $circuns->trupdc }},
-                        {{ $circuns->trumnr }},
-                        {{ $circuns->trupan }},
-                        {{ $circuns->trunulo }},
-                        {{ $circuns->trublan }},
+                        {{ $circuns->trcc }},
+                        {{ $circuns->trfpv }},
+                        {{ $circuns->trucs }},
+                        {{ $circuns->trmts }},
+                        {{ $circuns->trmas }},
+                        {{ $circuns->trbdn }},
+                        {{ $circuns->trpdc }},
+                        {{ $circuns->trmnr }},
+                        {{ $circuns->trpan }},
+                        {{ $circuns->trnulo }},
+                        {{ $circuns->trblan }},
                     ],
                     backgroundColor: [
                         '#EA5F36',
@@ -255,7 +305,7 @@
                 }]
             },
             options: {
-                responsive: true,
+				responsive: true,
                 animation: {
                     onComplete: function () {
                         var ctx = this.chart.ctx;
@@ -299,7 +349,7 @@
                     'Blancos'
                 ],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'VOTOS',
                     data: [
                         {{ $provincia->trcc }},
                         {{ $provincia->trfpv }},
@@ -388,7 +438,7 @@
                     'Blancos'
                 ],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'VOTOS',
                     data: [
                         {{ $municipio->trcc }},
                         {{ $municipio->trfpv }},
@@ -401,6 +451,96 @@
                         {{ $municipio->trpan }},
                         {{ $municipio->trnulo }},
                         {{ $municipio->trblan }},
+                    ],
+                    backgroundColor: [
+                        '#EA5F36',
+                        '#1B7C7A',
+                        '#348B3D',
+                        '#131518',
+                        '#234C9B',
+                        '#DA3932',
+                        '#FEFFFF',
+                        '#F286B7',
+                        '#E13B34',
+                        '#BBC7D8',
+                        '#E6B332'
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                        '#ffffff',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    onComplete: function () {
+                        var ctx = this.chart.ctx;
+                        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+                        ctx.fillStyle = "black";
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+
+                        this.data.datasets.forEach(function (dataset)
+                        {
+                            for (var i = 0; i < dataset.data.length; i++) {
+                                for(var key in dataset._meta)
+                                {
+                                    var model = dataset._meta[key].data[i]._model;
+                                    ctx.fillText(dataset.data[i], model.x, model.y - 5);
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+        @endforeach
+		
+		
+		//circunscripcione
+		@foreach($circun as $cric)
+        var ctx = document.getElementById('{{ $cric->circu."c" }}');
+        var myChart = new Chart(ctx , {
+            type: 'bar',
+            data: {
+                labels: [
+                    'C.C.',
+                    'F.P.V.',
+                    'M.T.S.',
+                    'U.C.S.',
+                    'M.A.S.',
+                    'B.D.N.',
+                    'P.D.C.',
+                    'M.N.R.',
+                    'PAN-BOL',
+                    'Nulos',
+                    'Blancos'
+                ],
+                datasets: [{
+                    label: 'VOTOS',
+                    data: [
+                        {{ $cric->trcc }},
+                        {{ $cric->trfpv }},
+                        {{ $cric->trucs }},
+                        {{ $cric->trmts }},
+                        {{ $cric->trmas }},
+                        {{ $cric->trbdn }},
+                        {{ $cric->trpdc }},
+                        {{ $cric->trmnr }},
+                        {{ $cric->trpan }},
+                        {{ $cric->trnulo }},
+                        {{ $cric->trblan }},
                     ],
                     backgroundColor: [
                         '#EA5F36',

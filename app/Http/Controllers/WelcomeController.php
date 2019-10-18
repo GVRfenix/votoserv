@@ -7,6 +7,11 @@ use App\Presidente;
 use App\Circunscripcion;
 use App\Provincia;
 use App\Municipio;
+use App\Modelos\Mesas;
+use App\Modelos\Habcirc;
+use App\Modelos\Habmuni;
+use App\Modelos\Habrecinto;
+use App\Modelos\TotalCirc;
 
 class WelcomeController extends Controller
 {
@@ -18,10 +23,16 @@ class WelcomeController extends Controller
     public function index()
     {
         $presidente = Presidente::first();
-        $circuns = Circunscripcion::first();
+        $circun = Circunscripcion::get();
+        $circuns = TotalCirc::first();
         $provincias = Provincia::get();
-        $municipios = Municipio::get();
-        return view('welcome', compact('presidente', 'circuns', 'provincias', 'municipios'));
+		$municipios = Municipio::get();
+		$totalElectore= Mesas::all()->sum('mesa_habili');
+		//$Presidente = totalPresi::all();
+		$porcen = round(($presidente->validos/$totalElectore)*100, 2);
+		$porcenU = round(($circuns->validos/$totalElectore)*100, 2);
+		//dd($circun);
+        return view('welcome', compact('presidente', 'circuns', 'provincias', 'municipios', 'porcen', 'totalElectore','porcenU', 'circun'));
     }
 
     /**

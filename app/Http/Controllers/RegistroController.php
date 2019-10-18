@@ -6,6 +6,10 @@ use App\Modelos\recinto;
 use App\Modelos\Mesas;
 use App\Modelos\totalPresi;
 use App\Modelos\TotalCircuns;
+use App\Modelos\Habrecinto;
+use App\Modelos\Habprov;
+use App\Modelos\Habmuni;
+use App\Modelos\Habcirc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -234,10 +238,12 @@ class RegistroController extends Controller
 			$recinto = recinto::orderBy('recinto_id','DESC')->paginate(10);
 		//}
 		$Presidente = totalPresi::all();
+		$habC = Habcirc::all();
 		$circuns = TotalCircuns::all();
 		$totalElectore= Mesas::all()->sum('mesa_habili');
 		$porcen = round(($Presidente[0]->validos/$totalElectore)*100, 2);
-		//dd($porcen);
+		$habC=array_column($habC->toArray(),'thabil','circu');
+		//dd($hcaux);
 		//dd($totalElectore);
 		//dd($circuns);
 		//$resul = DB::select('SELECT * FROM total_presi ');
@@ -245,6 +251,6 @@ class RegistroController extends Controller
 		//dd($resul);
 		//dd($total[0]->recin->recinto_provincia);
 		//dd(compact('total'));
-		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total', 'Presidente', 'circuns', 'porcen'));
+		return view('registro.totales', compact('titulo', 'buscar', 'columnas', 'total', 'Presidente', 'circuns', 'porcen','habC', 'totalElectore'));
 	}
 }

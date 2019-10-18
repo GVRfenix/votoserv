@@ -31,6 +31,7 @@
 						<th>BDN</th>
 						<th>PAN</th>
 						<th>VALIDOS</th>
+						<th>TOT. HAB.</th>
 						<th>NULO</th>
 						<th>BLANCO</th>
 					</tr>
@@ -47,6 +48,7 @@
 						<td><?php echo $Presidente[0]->trbdn; ?></td>
 						<td><?php echo $Presidente[0]->trpan; ?></td>
 						<td><?php echo "{$Presidente[0]->validos} - $porcen%"; ?></td>
+						<td><?php echo $totalElectore; ?></td>
 						<td><?php echo $Presidente[0]->trnulo; ?></td>
 						<td><?php echo $Presidente[0]->trblan; ?></td>
 						
@@ -61,7 +63,7 @@
 			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
 				<thead>
 					<tr>
-						<th>CIRCUNSCRIPCION</th>
+						<th>CIRCUNS.</th>
 						<th>CC</th>
 						<th>UCS</th>
 						<th>PDC</th>
@@ -72,6 +74,7 @@
 						<th>BDN</th>
 						<th>PAN</th>
 						<th>VALIDOS</th>
+						<th>TOT. HAB.</th>
 						<th>NULO</th>
 						<th>BLANCO</th>
 					</tr>
@@ -80,6 +83,7 @@
 					<?php 
 						$linea='';
 						foreach ($circuns as $cir){
+							$porcen= round(($cir->validosu/$habC[$cir->circu])*100, 2);
 							$linea .="<tr>
 								<td>$cir->circu</td>
 								<td>$cir->trcc</td>
@@ -91,7 +95,8 @@
 								<td>$cir->trmts</td>
 								<td>$cir->trbdn</td>
 								<td>$cir->trpan</td>
-								<td>$cir->validosu</td>
+								<td>$cir->validosu - $porcen%</td>
+								<td>{$habC[$cir->circu]}</td>
 								<td>$cir->trnulo</td>
 								<td>$cir->trblan</td>
 							</tr>";
@@ -108,16 +113,16 @@
         <div id="contenedor-proceso">
             <form method="POST">
 				{!! csrf_field() !!}
-                <!--div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
-                    <!--<div style="float: left; margin: 5px; width: auto;">->
+                <div id='jfloat' style="display: inline-block; width: 800px; margin: 5px; ">
+                    <!--<div style="float: left; margin: 5px; width: auto;">-->
                         <input type="hidden" name="id_usado" id="id_usado" value="" />
-                        <input id="jsearch" name="busca" type="text" value="{{$buscar}}" style="float: left;">
-                        <button type='submit' id='buscar' class='jaction' name="buscar" style="float: left;" value='buscar'>BUSCAR</button>
+                        <!--<input id="jsearch" name="busca" type="text" value="{{$buscar}}" style="float: left;">
+                        <button type='submit' id='buscar' class='jaction' name="buscar" style="float: left;" value='buscar'>BUSCAR</button>-->
                         <button type='submit' id='nuevo' class='jaction' name="nuevo" value='nuevo' style="float: left;">NUEVO</button>
                         <div style="float: left;">
                         <button id='editar' class='jaction' name='editar' disabled style='visibility:hidden; width:0;  height: 0; float: right;' value='editar'>EDITAR</button>
                         </div>
-                </div-->
+                </div>
                 <div style="width: 100%; overflow: auto;">
                     <div style="width: 1250px;  display: inline-block;">
                         <table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">

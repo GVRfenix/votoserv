@@ -45,7 +45,7 @@
 								<a class="fa-outdent" href="/registro/resultados">SEGUIMIENTO</a>
 							</div>
 							<div class="tarjeta tlinkedin">
-								<a class="fa-lock" href="/chofer">Reportes</a>
+								<a class="fa-lock" href="/">Reportes</a>
 							</div>
 						</div>
 					</div>
