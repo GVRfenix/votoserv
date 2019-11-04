@@ -10,102 +10,6 @@
 @section('contenido') 
 		<br>
         <br>
-		
-        <br>
-		<hr>
-		
-		
-		 <div id='titulo-pantalla'>TOTALES PRESIDENTE</div>
-		 <br>
-		<div style="display: inline-block; width: 800px; margin: 5px; ">
-			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
-				<thead>
-					<tr>
-						<th>CC</th>
-						<th>UCS</th>
-						<th>PDC</th>
-						<th>FPV</th>
-						<th>MAS-IPSP</th>
-						<th>MNR</th>
-						<th>MTS</th>
-						<th>BDN</th>
-						<th>PAN</th>
-						<th>VALIDOS</th>
-						<th>TOT. HAB.</th>
-						<th>NULO</th>
-						<th>BLANCO</th>
-					</tr>
-				</thead>
-				<TBODY>
-					<tr>
-						<td><?php echo($Presidente[0]->trcc); ?></td>
-						<td><?php echo $Presidente[0]->trucs; ?></td>
-						<td><?php echo $Presidente[0]->trpdc; ?></td>
-						<td><?php echo $Presidente[0]->trfpv; ?></td>
-						<td><?php echo $Presidente[0]->trmas; ?></td>
-						<td><?php echo $Presidente[0]->trmnr; ?></td>
-						<td><?php echo $Presidente[0]->trmts; ?></td>
-						<td><?php echo $Presidente[0]->trbdn; ?></td>
-						<td><?php echo $Presidente[0]->trpan; ?></td>
-						<td><?php echo "{$Presidente[0]->tvalidos} - $porcen%"; ?></td>
-						<td><?php echo $totalElectore; ?></td>
-						<td><?php echo $Presidente[0]->trnulo; ?></td>
-						<td><?php echo $Presidente[0]->trblan; ?></td>
-						
-					</tr>
-				</TBODY>
-			</table>
-		</div>
-		<br><br>
-		<div id='titulo-pantalla'>TOTALES UNINOMINALES</div>
-		 <br>
-		<div style="display: inline-block; width: 800px; margin: 5px; ">
-			<table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
-				<thead>
-					<tr>
-						<th>CIRCUNS.</th>
-						<th>CC</th>
-						<th>UCS</th>
-						<th>PDC</th>
-						<th>FPV</th>
-						<th>MAS-IPSP</th>
-						<th>MNR</th>
-						<th>MTS</th>
-						<th>BDN</th>
-						<th>PAN</th>
-						<th>VALIDOS</th>
-						<th>TOT. HAB.</th>
-						<th>NULO</th>
-						<th>BLANCO</th>
-					</tr>
-				</thead>
-				<TBODY>
-					<?php 
-						$linea='';
-						foreach ($circuns as $cir){
-							$porcen= round(($cir->trvalu/$habC[$cir->circu])*100, 2);
-							$linea .="<tr>
-								<td>$cir->circu</td>
-								<td>$cir->trucc</td>
-								<td>$cir->truucs</td>
-								<td>$cir->trupdc</td>
-								<td>$cir->trufpv</td>
-								<td>$cir->trumas</td>
-								<td>$cir->trumnr</td>
-								<td>$cir->trumts</td>
-								<td>$cir->trubdn</td>
-								<td>$cir->trupan</td>
-								<td>$cir->trvalu - $porcen%</td>
-								<td>{$habC[$cir->circu]}</td>
-								<td>$cir->trunulo</td>
-								<td>$cir->trublan</td>
-							</tr>";
-						}
-						echo $linea;
-					?>
-				</TBODY>
-			</table>
-		</div>
 		<br><br>
 		
         <div id='titulo-pantalla'><?= e($titulo); ?></div>
@@ -123,7 +27,7 @@
                         <button id='editar' class='jaction' name='editar' disabled style='visibility:hidden; width:0;  height: 0; float: right;' value='editar'>EDITAR</button>
                         </div>
                 </div>
-                <div style="width: 100%;">
+                <div style="width: 100%; overflow: auto;">
                     <div style="width: 1250px;  display: inline-block;">
                         <table  id='listado' class='listado-proce' style="margin: 0 auto; width: 100% !important;">
                             <?php      
@@ -185,59 +89,49 @@
                                         //foreach ($columnas AS $columna){ 
 											$linea .= "<td valign='top' class='no-mostrar'>{$dato->total_id}</td>";
 											$linea .= "<td valign='top' >{$col}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_provincia}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_municipio}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_asiento_elec}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_nombre}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->recin->recinto_circ}</td>";
-											$linea .= "<td valign='top'>{$dato->recin->mesa_numero}</td>";
 											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_cc}<br>
 												Unin.: {$dato->unino_cc}
-											</td>";
-											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_fpv}<br>
-												Unin.: {$dato->unino_fpv}
-											</td>";
-											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_mts}<br>
-												Unin.: {$dato->unino_mts}
 											</td>";
 											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_ucs}<br>
 												Unin.: {$dato->unino_ucs}
 											</td>";
 											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_mas}<br>
-												Unin.: {$dato->unino_mas}
-											</td>";
-											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_bdn}<br>
-												Unin.: {$dato->unino_bdn}
-											</td>";
-											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_pdc}<br>
 												Unin.: {$dato->unino_pdc}
+											</td>";
+											$linea .= "<td valign='top'>
+												Presi.: {$dato->presi_fpv}<br>
+												Unin.: {$dato->unino_fpv}
+											</td>";
+											$linea .= "<td valign='top'>
+												Presi.: {$dato->presi_mas}<br>
+												Unin.: {$dato->unino_mas}
 											</td>";
 											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_mnr}<br>
 												Unin.: {$dato->unino_mnr}
 											</td>";
 											$linea .= "<td valign='top'>
+												Presi.: {$dato->presi_mts}<br>
+												Unin.: {$dato->unino_mts}
+											</td>";
+											$linea .= "<td valign='top'>
+												Presi.: {$dato->presi_bdn}<br>
+												Unin.: {$dato->unino_bdn}
+											</td>";
+											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_pan}<br>
 												Unin.: {$dato->unino_pan}
 											</td>";
 											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_validos}<br>
-												Unin.: {$dato->unino_validos}
+												Presi.: {$dato->presi_nulo}<br>
+												Unin.: {$dato->unino_nulo}
 											</td>";
 											$linea .= "<td valign='top'>
 												Presi.: {$dato->presi_blan}<br>
 												Unin.: {$dato->unino_blan}
-											</td>";
-											$linea .= "<td valign='top'>
-												Presi.: {$dato->presi_nulo}<br>
-												Unin.: {$dato->unino_nulo}
 											</td>";
                                            
 										//}  

@@ -4,10 +4,10 @@
 }
 table{
     font-family: 'Arial';
-    padding-left: 25px;
+    /*padding-left: 25px;*/
 }
 h2{
-    font-size: 2.5em;
+    font-size: 2em;
 }
 /*html, body{
   height:100%;
@@ -43,6 +43,7 @@ h2{
 #cuerpo{
     width: 80%;
     float:left;
+	overflow: auto;
 }
 #costado{
     width: 17%;

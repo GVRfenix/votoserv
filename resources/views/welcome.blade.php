@@ -61,10 +61,10 @@
                 </div>
 				<div>
 					<b>TOTAL DE VOTANTES:</b> {{$totalElectore }}<br>
-					<b>TOTAL DE VALIDOS:</b> {{$presidente->validos}} - {{$porcen }}%
+					<b>TOTAL DE VALIDOS:</b> {{$presidente->tvalidos}} - {{$porcen }}%
 				</div>
             </div>
-            <div class="col-sm-6">
+            <!--div class="col-sm-6">
                 <div class="card" style="width: 100%;">
                     <canvas id="uninominal" width="100%" height="100%"></canvas>
                     <div class="card-body">
@@ -75,7 +75,7 @@
 					<b>TOTAL DE VOTANTES:</b> {{$totalElectore }}<br>
 					<b>TOTAL DE VALIDOS:</b> {{$circuns->validos}} - {{$porcenU }}%
 				</div>
-            </div>
+            </div-->
         </div>
 		<BR>
 		
@@ -99,7 +99,7 @@
 				<div>
 				
 					<b>TOTAL DE VOTANTES:</b> {{$provincia->habili}}<br>
-					<b>TOTAL DE VALIDOS:</b> {{$provincia->validosu}} - {{round(($provincia->validosu/$provincia->habili)*100, 2) }}%
+					<b>TOTAL DE VALIDOS:</b> {{$provincia->trval}} - {{round(($provincia->trval/$provincia->habili)*100, 2) }}%
 				</div>
             </div>
             @endforeach
@@ -119,7 +119,7 @@
                 </div>
 				<div>
 					<b>TOTAL DE VOTANTES:</b> {{$municipio->habili }}<br>
-					<b>TOTAL DE VALIDOS:</b> {{$municipio->validosu}} - {{round(($municipio->validosu/$municipio->habili)*100, 2) }}%
+					<b>TOTAL DE VALIDOS:</b> {{$municipio->trval}} - {{round(($municipio->trval/$municipio->habili)*100, 2) }}%
 				</div>
             </div>
 			<br><br>
@@ -144,7 +144,7 @@
                 </div>
 				<div>
 					<b>TOTAL DE VOTANTES:</b> {{$circ->habili }}<br>
-					<b>TOTAL DE VALIDOS:</b> {{$circ->validosu}} - {{round(($circ->validosu/$circ->habili)*100, 2) }}%
+					<b>TOTAL DE VALIDOS:</b> {{$circ->trvalu}} - {{round(($circ->trvalu/$circ->habili)*100, 2) }}%
 				</div>
             </div>
             @endforeach
@@ -243,7 +243,7 @@
         });
 
         // Uninominales
-        var ctx = document.getElementById('uninominal');
+        /*var ctx = document.getElementById('uninominal');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -327,7 +327,7 @@
                     }
                 }
             }
-        });
+        });*/
 
         //Provincias
         @foreach($provincias as $provincia)
@@ -520,7 +520,7 @@
                     'M.T.S.',
                     'U.C.S.',
                     'M.A.S.',
-                    'B.D.N.',
+                    '21F.',
                     'P.D.C.',
                     'M.N.R.',
                     'PAN-BOL',
@@ -530,17 +530,17 @@
                 datasets: [{
                     label: 'VOTOS',
                     data: [
-                        {{ $cric->trcc }},
-                        {{ $cric->trfpv }},
-                        {{ $cric->trucs }},
-                        {{ $cric->trmts }},
-                        {{ $cric->trmas }},
-                        {{ $cric->trbdn }},
-                        {{ $cric->trpdc }},
-                        {{ $cric->trmnr }},
-                        {{ $cric->trpan }},
-                        {{ $cric->trnulo }},
-                        {{ $cric->trblan }},
+                        {{ $cric->trucc }},
+                        {{ $cric->trufpv }},
+                        {{ $cric->trumts }},
+                        {{ $cric->truucs }},
+                        {{ $cric->trumas }},
+                        {{ $cric->trubdn }},
+                        {{ $cric->trupdc }},
+                        {{ $cric->trumnr }},
+                        {{ $cric->trupan }},
+                        {{ $cric->trunulo }},
+                        {{ $cric->trublan }},
                     ],
                     backgroundColor: [
                         '#EA5F36',

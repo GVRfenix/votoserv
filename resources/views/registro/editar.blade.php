@@ -174,7 +174,7 @@
 	
 </script>
 @section('contenido')
-		<div id="form-r" style="width: 75%; margin: 20px auto;  overflow: auto; width: 95%;">
+		<div id="form-r" style="width: 75%; margin: 20px auto;">
 			<br>
 			<div style="padding-top: 20px;">
 				<!--span class="chyron"><em><a href="{route('chofer')}}">&laquo; Volver</a></em></span-->
@@ -184,41 +184,6 @@
 			<form method="POST" action="almacenar">
 				{!! csrf_field() !!}
 				<div>
-					<DIV style="display: inline; width: 20%;">
-						<label>PROVINCIA</label>
-						<select id='prov' name='prov' style="width: 90px;" onchange = 'cargarmuni(this.value);'>
-							<option value='0'>Selec...</option>";
-							@foreach($rec as $reci)
-								<option value='{{$reci}}'>{{$reci}}</option>";
-							@endforeach
-						</select>
-					</DIV>
-					<div style="display: inline; width: 20%;">
-						<label>MUNICIPIO</label>
-						<select id='muni' name='muni' style="width: 90px;" onchange = 'cargarasien(this.value);' disabled >
-							<option value='0'>Selec...</option>";
-						</select>
-					</DIV>
-					<div style="display: inline; width: 20%;">
-						<label>ASIENTO ELECTORAL</label>
-						<select id='asiento' name='asiento' style="width: 90px;" onchange = 'cargarrecinto(this.value);' disabled>
-							<option value='0'>Selec...</option>";
-						</select>
-					</DIV>
-					<div style="display: inline; width: 20%;">
-						<label>RECINTO</label>
-						<select id='recinto' name='recinto' style="width: 90px;" onchange = 'recintoid(this.value);' disabled>
-							<option value='0'>Selec...</option>";
-						</select>
-					</DIV>
-					<div style="display: inline; width: 20%;">
-						<label>Nº DE MESA</label>
-						<select id='nmesa' name='nmesa' style="width: 40px;" onchange = 'mesaid(this.value);' disabled >
-							<option value='0'>0</option>";
-						</select>
-						<!--input type = 'text' id='nmesa' name='nmesa' placeholder='0' style="width: 20px;" value="{{old('nmesa') }}"--->
-						
-					</DIV>
 					
 				</div>
 				<input id='idrecint' type='hidden' name='idrecint' value="">
@@ -226,24 +191,24 @@
 					<div class='error'>{{$errors->first('idrecint')}}</div>
 				@endif
 				<br>
-				<h1 class='titulo_lista' id='titulo_registro'  style="width: 690px !important;">Registro de Mesa Presidente</h1>
+				<h1 class='titulo_lista' id='titulo_registro'>Registro de Mesa Presidente</h1>
 				
-				<div id="form-reg"  style="width: 690px !important;>
+				<div id="form-reg" >
 					<!--div style=" width: 100%; height: auto; margin: 0 auto; float:left;"--->
-						<table  style="margin: 0 auto; width: 690px !important;">
+						<table>
 							<tr>
-								<td valign="top">CC</td>
-								<td valign="top">FPV</td>
-								<td valign="top">MTS</td>
-								<td valign="top">UCS</td>
-								<td valign="top">MAS-<br>IPSP</td>
-								<td valign="top">21F</td>
-								<td valign="top">PDC</td>
-								<td valign="top">MNR</td>
-								<td valign="top">PAN-BOL</td>
-								<td valign="top">VOTOS<BR>VALIDOS</td>
-								<td valign="top">Blanco</td>
+								<td valign="top">Comunidad Ciudadana</td>
+								<td valign="top">Unidad Civica Solidaria</td>
+								<td valign="top">Partido Democrata Cristiano</td>
+								<td valign="top">Frente Para la victoria</td>
+								<td valign="top">Movimiento al Socialismo-Instrumento Politico por la Soberania de los Pueblos</td>
+								<td valign="top">Movimiento Nacionalista Revolucionario</td>
+								<td valign="top">Movimiento Tercer Sistena</td>
+								<td valign="top">Bolivia Dice no</td>
+								<td valign="top">Partido de Accion Nacional Boliviano</td>
+								<td valign="top">VOTOS VALIDOS</td>
 								<td valign="top">Nulo</td>
+								<td valign="top">Blanco</td>
 							</tr>
 							<tr>
 								<td>
@@ -253,21 +218,21 @@
 									@endif
 								</td>
 								<td>
-									<input type = 'text' name='presi_fpv' placeholder='0' value="{{old('presi_fpv') }}">
-									@if ($errors->has('presi_fpv'))
-										<div class='error'>{{$errors->first('presi_fpv')}}</div>
-									@endif
-								</td>
-								<td>
-									<input type = 'text' name='presi_mts' placeholder='0' value="{{old('presi_mts') }}">
-									@if ($errors->has('presi_mts'))
-										<div class='error'>{{$errors->first('presi_mts')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='presi_ucs' placeholder='0' value="{{ old('presi_ucs') }}">
 									@if ($errors->has('presi_ucs'))
 										<div class='error'>{{$errors->first('presi_ucs')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='presi_pdc' placeholder='0' value="{{ old('presi_pdc') }}">
+									@if ($errors->has('presi_pdc'))
+										<div class='error'>{{$errors->first('presi_pdc')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='presi_fpv' placeholder='0' value="{{old('presi_fpv') }}">
+									@if ($errors->has('presi_fpv'))
+										<div class='error'>{{$errors->first('presi_fpv')}}</div>
 									@endif
 								</td>
 								<td>
@@ -277,22 +242,22 @@
 									@endif
 								</td>
 								<td>
-									<input type = 'text' name='presi_bdn' placeholder='0' value="{{ old('presi_bdn') }}">
-									@if ($errors->has('presi_bdn'))
-										<div class='error'>{{$errors->first('presi_bdn')}}</div>
-									@endif	
-								</td>
-								<td>
-									<input type = 'text' name='presi_pdc' placeholder='0' value="{{ old('presi_pdc') }}">
-									@if ($errors->has('presi_pdc'))
-										<div class='error'>{{$errors->first('presi_pdc')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='presi_mnr' placeholder='0' value="{{ old('presi_mnr') }}">
 									@if ($errors->has('presi_mnr'))
 										<div class='error'>{{$errors->first('presi_mnr')}}</div>
 									@endif
+								</td>
+								<td>
+									<input type = 'text' name='presi_mts' placeholder='0' value="{{old('presi_mts') }}">
+									@if ($errors->has('presi_mts'))
+										<div class='error'>{{$errors->first('presi_mts')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='presi_bdn' placeholder='0' value="{{ old('presi_bdn') }}">
+									@if ($errors->has('presi_bdn'))
+										<div class='error'>{{$errors->first('presi_bdn')}}</div>
+									@endif	
 								</td>
 								<td>
 									<input type = 'text' name='presi_pan' placeholder='0' value="{{ old('presi_pan') }}">
@@ -307,16 +272,16 @@
 									@endif	
 								</td>
 								<td>
-									<input type = 'text' name='presi_blan' placeholder='0' value="{{ old('presi_blan') }}">
-									@if ($errors->has('presi_blan'))
-										<div class='error'>{{$errors->first('presi_blan')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='presi_nu' placeholder='0' value="{{ old('presi_nu') }}">
 									@if ($errors->has('presi_nu'))
 										<div class='error'>{{$errors->first('presi_nu')}}</div>
 									@endif	
+								</td>
+								<td>
+									<input type = 'text' name='presi_blan' placeholder='0' value="{{ old('presi_blan') }}">
+									@if ($errors->has('presi_blan'))
+										<div class='error'>{{$errors->first('presi_blan')}}</div>
+									@endif
 								</td>
 							</tr>
 						</table>
@@ -326,23 +291,23 @@
 					
 				</div>
 				<br>
-				<h1 class='titulo_lista' id='titulo_registro'  style="width: 690px !important;">Registro de Mesa Uninominal</h1>
+				<h1 class='titulo_lista' id='titulo_registro'>Registro de Mesa Uninominal</h1>
 				
-				<div id="form-reg" style="width: 690px !important;">
-						<table  style="margin: 0 auto; width: 690px !important;">
+				<div id="form-reg" >
+						<table>
 							<tr>
-								<td valign="top">CC</td>
-								<td valign="top">FPV</td>
-								<td valign="top">MTS</td>
-								<td valign="top">UCS</td>
-								<td valign="top">MAS-<br>IPSP</td>
-								<td valign="top">21F</td>
-								<td valign="top">PDC</td>
-								<td valign="top">MNR</td>
-								<td valign="top">PAN-BOL</td>
-								<td valign="top">VOTOS<BR>VALIDOS</td>
-								<td valign="top">Blancos</td>
+								<td valign="top">Comunidad Ciudadana</td>
+								<td valign="top">Unidad Civica Solidaria</td>
+								<td valign="top">Partido Democrata Cristiano</td>
+								<td valign="top">Frente Para la victoria</td>
+								<td valign="top">Movimiento al Socialismo-Instrumento Politico por la Soberania de los Pueblos</td>
+								<td valign="top">Movimiento Nacionalista Revolucionario</td>
+								<td valign="top">Movimiento Tercer Sistena</td>
+								<td valign="top">Bolivia Dice no</td>
+								<td valign="top">Partido de Accion Nacional Boliviano</td>
+								<td valign="top">VOTOS VALIDOS</td>
 								<td valign="top">Nulos</td>
+								<td valign="top">Blancos</td>
 							</tr>
 							<tr>
 								<td>
@@ -352,21 +317,21 @@
 									@endif
 								</td>
 								<td>
-									<input type = 'text' name='unino_fpv' placeholder='0' value="{{old('unino_fpv') }}">
-									@if ($errors->has('unino_fpv'))
-										<div class='error'>{{$errors->first('unino_fpv')}}</div>
-									@endif
-								</td>
-								<td>
-									<input type = 'text' name='unino_mts' placeholder='0' value="{{old('unino_mts') }}">
-									@if ($errors->has('unino_mts'))
-										<div class='error'>{{$errors->first('unino_mts')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='unino_ucs' placeholder='0' value="{{ old('unino_ucs') }}">
 									@if ($errors->has('unino_ucs'))
 										<div class='error'>{{$errors->first('unino_ucs')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='unino_pdc' placeholder='0' value="{{ old('unino_pdc') }}">
+									@if ($errors->has('unino_pdc'))
+										<div class='error'>{{$errors->first('unino_pdc')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='unino_fpv' placeholder='0' value="{{old('unino_fpv') }}">
+									@if ($errors->has('unino_fpv'))
+										<div class='error'>{{$errors->first('unino_fpv')}}</div>
 									@endif
 								</td>
 								<td>
@@ -376,22 +341,22 @@
 									@endif
 								</td>
 								<td>
-									<input type = 'text' name='unino_bdn' placeholder='0' value="{{ old('unino_bdn') }}">
-									@if ($errors->has('unino_bdn'))
-										<div class='error'>{{$errors->first('unino_bdn')}}</div>
-									@endif	
-								</td>
-								<td>
-									<input type = 'text' name='unino_pdc' placeholder='0' value="{{ old('unino_pdc') }}">
-									@if ($errors->has('unino_pdc'))
-										<div class='error'>{{$errors->first('unino_pdc')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='unino_mnr' placeholder='0' value="{{ old('unino_mnr') }}">
 									@if ($errors->has('unino_mnr'))
 										<div class='error'>{{$errors->first('unino_mnr')}}</div>
 									@endif
+								</td>
+								<td>
+									<input type = 'text' name='unino_mts' placeholder='0' value="{{old('unino_mts') }}">
+									@if ($errors->has('unino_mts'))
+										<div class='error'>{{$errors->first('unino_mts')}}</div>
+									@endif
+								</td>
+								<td>
+									<input type = 'text' name='unino_bdn' placeholder='0' value="{{ old('unino_bdn') }}">
+									@if ($errors->has('unino_bdn'))
+										<div class='error'>{{$errors->first('unino_bdn')}}</div>
+									@endif	
 								</td>
 								<td>
 									<input type = 'text' name='unino_pan' placeholder='0' value="{{ old('unino_pan') }}">
@@ -406,16 +371,16 @@
 									@endif	
 								</td>
 								<td>
-									<input type = 'text' name='unino_blan' placeholder='0' value="{{ old('unino_blan') }}">
-									@if ($errors->has('unino_blan'))
-										<div class='error'>{{$errors->first('unino_blan')}}</div>
-									@endif
-								</td>
-								<td>
 									<input type = 'text' name='unino_nul' placeholder='0' value="{{ old('unino_nul') }}">
 									@if ($errors->has('unino_nul'))
 										<div class='error'>{{$errors->first('unino_nul')}}</div>
 									@endif	
+								</td>
+								<td>
+									<input type = 'text' name='unino_blan' placeholder='0' value="{{ old('unino_blan') }}">
+									@if ($errors->has('unino_blan'))
+										<div class='error'>{{$errors->first('unino_blan')}}</div>
+									@endif
 								</td>
 							</tr>
 						</table>

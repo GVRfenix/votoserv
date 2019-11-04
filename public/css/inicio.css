@@ -6,12 +6,12 @@ box-sizing: border-box;
 }
 /* Contenedor general */
 .cartera {
-position: relative;
-width: 100%;
+/*position: relative;*/
+width: 62%;
 max-width: 500px;
 margin: 40px auto 0;
 text-align: center;
-line-height: 56px;
+line-height: 26px;
 font-size: 14px;
 font-family: sans-serif;
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTotalTable extends Migration
+class CreateLaPazTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class CreateTotalTable extends Migration
      */
     public function up()
     {
-        Schema::create('total', function (Blueprint $table) {
-            $table->increments('total_id');
-            //$table->integer('total_presidente');
-            //$table->integer('total_uninominal');
-            //$table->integer('total_alcalde');
-            //$table->integer('total_gobernador');
-            $table->timestamp('total_fec_reg');
-			$table->integer('mesas');
-			$table->string ('obs_suma_voto');
-			$table->string ('observaciones');
+        Schema::create('la_paz', function (Blueprint $table) {
+            $table->increments('id');
+			$table->timestamp('total_fec_reg');
 			$table->integer('presi_cc');
 			$table->integer('presi_ucs');
 			$table->integer('presi_pdc');
@@ -58,6 +51,6 @@ class CreateTotalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('total');
+        Schema::dropIfExists('la_paz');
     }
 }

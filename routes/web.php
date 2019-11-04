@@ -30,3 +30,28 @@ Route::get('/registro/resultados', "RegistroController@lista")
 		
 Route::post('/registro/resultados', "RegistroController@lista")
 		->name("registro.resultados");
+
+		
+Route::get('/registro/lapaz', "RegistroController@nuevolp")
+		->name("registro.nlp");
+
+Route::post('/registro/almalapaz', "RegistroController@guardarlp")
+		->name("registro.glp");
+		
+Route::get('/registro/elalto', "RegistroController@nuevoea")
+		->name("registro.nea");
+
+Route::post('/registro/almaelalto', "RegistroController@guardarea")
+		->name("registro.glp");
+
+Route::get('/registro/resultadoslp', "RegistroController@listalp")
+		->name("registro.resultadoslp");
+		
+Route::post('/registro/resultadoslp', "RegistroController@listalp")
+		->name("registro.resultadoslp");
+		
+Route::get('/registro/resultadosea', "RegistroController@listaea")
+		->name("registro.resultadosea");
+		
+Route::post('/registro/resultadosea', "RegistroController@listaea")
+		->name("registro.resultadosea");

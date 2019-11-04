@@ -32,7 +32,7 @@
 						@yield('contenido')
 					</div>
 					<div id="costado">
-						<div class="cartera">
+						<div class="">
 							<div id="titulo"><h2>COMPUTO<BR>2019<br>MENÚ</h2></div>
 						
 							<!--div class="tarjeta tfacebook">
